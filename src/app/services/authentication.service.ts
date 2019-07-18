@@ -9,7 +9,9 @@ export class AuthenticationService {
 
   public currentUsername: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUsername = JSON.parse(localStorage.getItem('currentUsername'));
+  }
 
   login(username: string, password: string) {
       return this.http.post<any>('http://localhost:8080/api/auth/signin', { username, password })
